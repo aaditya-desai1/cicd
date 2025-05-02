@@ -1,7 +1,13 @@
-cat <<EOF > tests/index.test.js
-const hello = require('../index');
+// test.js
 
-test('returns Hello, World!', () => {
-  expect(hello()).toBe('Hello, World!');
+const request = require('supertest');
+const app = require('../index'); // Assuming index.js exports the app
+
+describe('GET /', () => {
+  it('should return Hello, World!', async () => {
+    const response = await request(app).get('/');
+    expect(response.text).toBe('Hello, World!');
+    expect(response.status).toBe(200);
+  });
 });
-EOF
+

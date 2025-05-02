@@ -1,9 +1,14 @@
-function hello() {
-  return 'Hello, World!';
-}
+// index.js
 
-if (require.main === module) {
-  console.log(hello());
-}
+const express = require('express');
+const app = express();
+const port = 8080;
 
-module.exports = hello;
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+app.listen(port, () => {
+  console.log(`App listening at http://localhost:${port}`);
+});
+module.exports = app;
